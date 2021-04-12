@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: kibana-ingress
+  namespace: mern-kube-logging
+  annotations:
+    nginx.org/client-max-body-size: "10m"
+spec:
+  rules:
+## Service Location n Characters
+  - host: kibana.hansluber.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: kibana
+          servicePort: 5601
